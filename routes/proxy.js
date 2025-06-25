@@ -3,25 +3,29 @@ const router = express.Router();
 const authenticate = require('../middleware/auth');
 const axios = require('axios');
 
-const API_KEY = process.env.THIRD_PARTY_API_KEY;
+const API_KEY = process.env.PAGESPEED_API_KEY;
 
-// POST /proxy
-router.post('/', authenticate, async (req, res) => {
+// POST /proxy/pagespeed
+router.post('/pagespeed', authenticate, async (req, res) => {
+  const { url, strategy } = req.body;
+
+  if (!url) {
+    return res.status(400).json({ error: 'Missing "url" in request body' });
+  }
+
   try {
-    // Example: forward to a third-party API using secure API_KEY
-    const { endpoint, params } = req.body;
-
-    const response = await axios.get(endpoint, {
-      params,
-      headers: {
-        'X-API-Key': API_KEY
+    const response = await axios.get('https://www.googleapis.com/pagespeedonline/v5/runPagespeed', {
+      params: {
+        url,
+        strategy: strategy || 'mobile',
+        key: API_KEY
       }
     });
 
-    return res.json(response.data);
+    res.json(response.data);
   } catch (err) {
-    console.error('❌ Proxy error:', err.message);
-    return res.status(500).json({ error: 'Proxy request failed' });
+    console.error('❌ PageSpeed error:', err.message);
+    res.status(500).json({ error: 'Failed to fetch PageSpeed data' });
   }
 });
 
