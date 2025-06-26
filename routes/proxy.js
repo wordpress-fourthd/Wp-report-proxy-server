@@ -15,11 +15,13 @@ router.post('/pagespeed', authenticate, async (req, res) => {
 
   try {
     const response = await axios.get('https://www.googleapis.com/pagespeedonline/v5/runPagespeed', {
-      params: {
-        url,
-        strategy: strategy || 'mobile',
-        key: API_KEY
-      }
+     params: {
+  url,
+  strategy: strategy || 'mobile',
+  key: API_KEY,
+  category: ['performance', 'accessibility', 'best-practices', 'seo']
+}
+
     });
 
     res.json(response.data);
