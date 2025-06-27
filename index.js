@@ -30,7 +30,7 @@ app.use('/proxy', proxyRoute);
 
 // Root route (optional status check)
 app.get('/', (req, res) => {
-  res.send('✅ Proxy Server is running fast  latest ');
+  res.send('✅ Proxy Server is running fast latest sftp ');
 });
 
 // Start server
