@@ -21,7 +21,6 @@ router.post('/pagespeed', authenticate, async (req, res) => {
   key: API_KEY,
   category: ['performance', 'accessibility', 'best-practices', 'seo']
 }
-
     });
 
     res.json(response.data);
