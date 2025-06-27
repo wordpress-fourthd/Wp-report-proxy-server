@@ -11,7 +11,7 @@ const bodyParser = require('body-parser');
 // Import route handlers
 const registerRoute = require('./routes/register');
 const refreshRoute = require('./routes/refresh'); 
-const proxyRoute = require('./routes/proxy');
+const proxyRoute = require('./routes/pagespeed');
 
 
 // Initialize Express app
@@ -25,12 +25,12 @@ app.use(bodyParser.json()); // Parse incoming JSON payloads
 // API Routes
 app.use('/register', registerRoute); 
 app.use('/refresh', refreshRoute);   
-app.use('/proxy', proxyRoute);
+app.use('/pagespeed', proxyRoute);
 
 
 // Root route (optional status check)
 app.get('/', (req, res) => {
-  res.send('✅ Proxy Server is running fast latest sftp ');
+  res.send('✅ Proxy Server is running fast');
 });
 
 // Start server

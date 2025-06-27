@@ -6,7 +6,7 @@ const axios = require('axios');
 
 const API_KEY = process.env.PAGESPEED_API_KEY;
 
-router.post('/pagespeed', authenticate, async (req, res) => {
+router.post('/getinsights', authenticate, async (req, res) => {
   const { url, strategy } = req.body;
   if (!url) return res.status(400).json({ error: 'Missing "url"' });
 

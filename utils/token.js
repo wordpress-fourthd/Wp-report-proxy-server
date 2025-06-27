@@ -14,7 +14,7 @@ function generateTokens(site_url) {
   const refresh_token = jwt.sign(
     { site_url },
     SECRET_KEY,
-    { expiresIn: '1d' } 
+    { expiresIn: '7d' } 
   );
 
   return { install_token, refresh_token };
