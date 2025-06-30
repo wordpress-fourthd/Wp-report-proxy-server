@@ -2,7 +2,7 @@ const { verifyToken } = require('../utils/token');
 
 function authenticate(req, res, next) {
   const authHeader = req.headers['authorization'];
-  const token = authHeader?.split(' ')[1]; // "Bearer token123"
+  const token = authHeader?.split(' ')[1]; 
 
   if (!token) {
     return res.status(401).json({ error: 'Missing Authorization token' });

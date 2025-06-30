@@ -12,6 +12,8 @@ const bodyParser = require('body-parser');
 const registerRoute = require('./routes/register');
 const refreshRoute = require('./routes/refresh'); 
 const proxyRoute = require('./routes/pagespeed');
+const vulnerabilityRoute = require('./routes/vulnerability'); 
+
 
 
 // Initialize Express app
@@ -26,6 +28,8 @@ app.use(bodyParser.json()); // Parse incoming JSON payloads
 app.use('/register', registerRoute); 
 app.use('/refresh', refreshRoute);   
 app.use('/pagespeed', proxyRoute);
+app.use('/vulnerability', vulnerabilityRoute); 
+
 
 
 // Root route (optional status check)
